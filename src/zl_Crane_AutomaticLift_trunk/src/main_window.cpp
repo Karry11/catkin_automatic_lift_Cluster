@@ -4125,7 +4125,7 @@ void MainWindow::Function_pcan_data_receive_Thread()
         // 加锁更新数据
         std::unique_lock<std::mutex> lock(collisionWorker_->ctx->dataMutex_);
         
-        if(!ctx->busData_.b_updated_){
+        if(!collisionWorker_->ctx->busData_.b_updated_){
             if (f_test) {
                 collisionWorker_->ctx->busData_.rope_len_ = 10;
                 collisionWorker_->ctx->busData_.load_exist_flag_ = false;
@@ -4140,7 +4140,7 @@ void MainWindow::Function_pcan_data_receive_Thread()
                 collisionWorker_->ctx->busData_.vy_ = 0;
                 collisionWorker_->ctx->busData_.vz_ = 0;
             }
-            ctx->busData_.b_updated_= true; //待完善can掉线重联逻辑
+            collisionWorker_->ctx->busData_.b_updated_= true; //待完善can掉线重联逻辑
         }
 //***************************************************************
 //*********                 碰撞检测及点云可视化          ***********
