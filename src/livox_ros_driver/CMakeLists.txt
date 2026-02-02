@@ -20,7 +20,7 @@ find_package(Boost 1.54 REQUIRED COMPONENTS
 	)
 
 # 1. 显式寻找 PCL 1.12
-find_package(PCL 1.12 REQUIRED)
+find_package(PCL  REQUIRED)
 
 # 2. 强制将 PCL_INCLUDE_DIRS 指向正确的位置
 # 这样做可以覆盖后续 pcl_ros 带来的错误路径

@@ -8825,7 +8825,16 @@ void zl_Crane_AutomaticLift_trunk::MainWindow::initPCLViewer() {
     // 5. 解决 Stack underflow (1284) 的补丁
     // 这个问题通常是因为多重采样 (MultiSampling) 在旧版 VTK 和 Qt5 之间冲突
     pcl_win->SetMultiSamples(0); 
+
+    // 调节视角
+    
     pclviewer_->resetCamera();
+    pclviewer_->setCameraPosition(
+        -100.0,   0.0,   -40.0,  // 相机位置 //
+        63,    0.0,   0.0,       // 焦点位置 //collisionWorker_->ctx->busData_.rope_len_ 
+        0.0,     0.0,   1.0        // Z 轴向上
+    );
+
     pclviewer_->setBackgroundColor(0.1, 0.1, 0.1);
 }
 void zl_Crane_AutomaticLift_trunk::MainWindow::updateVisualization(CollisionResult result, 

@@ -43,7 +43,7 @@ find_package(FreeGLUT REQUIRED
 find_package(VTK 6.3.0 EXACT REQUIRED)
 find_package(PCL 1.8.1 EXACT REQUIRED)
 find_package(Protobuf REQUIRED)
-
+find_package(yaml-cpp REQUIRED)
 # find_package(Torch REQUIRED
 #         PATHS /usr/local/libtorch/share/cmake
 #         NO_DEFAULT_PATH)
