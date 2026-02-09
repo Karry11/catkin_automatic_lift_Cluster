@@ -204,6 +204,10 @@ public:
   zl_common::app::QLabelEx *label_vedioStream_;
   ompl::app::GLWidget *glWidget_;//motion planning visualization
 
+  // Load planner JSON output and start trajectory tracking.
+  // Returns false if the JSON is invalid or the trajectory is empty.
+  bool loadPlannerJsonAndTrack(const std::string& json_path, double dt_sec = 0.1);
+
   QReadWriteLock m_frame_mutex;
   QReadWriteLock m_param_mutex;
   QReadWriteLock m_hookheight_mutex;

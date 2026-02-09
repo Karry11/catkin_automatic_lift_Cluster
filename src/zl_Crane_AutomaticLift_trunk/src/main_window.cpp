@@ -12,6 +12,7 @@
 #include <QtGui>
 #include <main_window.hpp>
 #include "main_window.hpp"
+#include "planner_json_loader.hpp"
 #include <qmetatype.h>
 // #include<Zl_livox_merge_with_camera/Zl_livox_merge_with_camera.h>
 
@@ -4015,6 +4016,28 @@ void MainWindow::reset_all_parameter_to_initial_status()
 
     crane_parameter_->laser_camera_to_ground_height_ = 0;
     sleep(2);
+}
+
+bool MainWindow::loadPlannerJsonAndTrack(const std::string& json_path, double dt_sec)
+{
+    ompl::app::joint_trajectory_t traj;
+    std::string err;
+    if (!BuildTrajectoryFromPlannerJson(json_path, &traj, dt_sec, &err))
+    {
+        std::cerr << "loadPlannerJsonAndTrack failed: " << err << std::endl;
+        return false;
+    }
+    if (traj.points.size() < 2)
+    {
+        std::cerr << "loadPlannerJsonAndTrack failed: trajectory has fewer than 2 points." << std::endl;
+        return false;
+    }
+
+    solution_trajectory_ = std::move(traj);
+    m_trajectory_point_size = solution_trajectory_.points.size();
+
+    on_Trajectory_tracking_triggered();
+    return true;
 }
 
 
